@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  freeciv-server:
+    image: freeciv-server:latest
+    build:
+      context: .
+      args:
+        FREECIV_VERSION: 3.0.2
+        UID: 1000
+        GID: 1000
+    restart: unless-stopped
+    ports:
+      - "5556:5556"
+    #env_file:
+    #  - .env
+    volumes:
+      - freeciv:/freeciv
+
+
+volumes:
+  freeciv: {}
