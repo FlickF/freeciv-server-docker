@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  freeciv-server:
+  server:
     image: freeciv-server:latest
     build:
       context: .
@@ -11,12 +11,10 @@ services:
         GID: 1000
     restart: unless-stopped
     ports:
-      - "5556:5556"
-    #env_file:
-    #  - .env
+      - "5556:5556/tcp"
     volumes:
-      - freeciv:/freeciv
+      - game:/home/freeciv/game:rw
 
 
 volumes:
-  freeciv: {}
+  game: {}
