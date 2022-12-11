@@ -9,12 +9,19 @@ services:
         FREECIV_VERSION: 3.0.2
         UID: 1000
         GID: 1000
+    container_name: freeciv-server
     restart: unless-stopped
     ports:
       - "5556:5556/tcp"
     volumes:
       - game:/home/freeciv/game:rw
-
+    networks:
+      default:
 
 volumes:
-  game: {}
+  game:
+    name: freeciv-server_game
+
+networks:
+  default:
+    driver: bridge
